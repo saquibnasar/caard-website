@@ -174,7 +174,7 @@ async function getData() {
   root.style.height = "100vh";
   loader.classList.add("d-flex");
   let response = await fetch(
-    "https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib"
+    "https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib556"
   );
 
   data = await response.json();
