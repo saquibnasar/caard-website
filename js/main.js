@@ -1,4 +1,5 @@
 import getDocument, { showPrevPage, showNextPage } from "./document.js";
+import getSlider from "./slider.js";
 
 const getIcon = (iconName) => {
   switch (iconName) {
@@ -174,7 +175,7 @@ async function getData() {
   root.style.height = "100vh";
   loader.classList.add("d-flex");
   let response = await fetch(
-    "https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib556"
+    "https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib"
   );
 
   data = await response.json();
@@ -187,7 +188,7 @@ function loadAllDetails() {
   showUserDetails("text", data["PersonalInfo"]["Location"], ".hero-bottom h2");
   showUserDetails("text", data["PersonalInfo"]["Country"], ".hero-bottom h3");
   showUserDetails("text", data["PersonalInfo"]["Bio"], ".hero-detail p");
-
+  const cardContainer = document.querySelector(".card-section .container");
   let cardData = data.BusinessLinks;
 
   if (data.Mode == "Direct") {
@@ -203,15 +204,45 @@ function loadAllDetails() {
     root.style.height = "100%";
     loader.classList.remove("d-flex");
     loader.classList.add("d-none");
-    console.log("up");
   }
+  if (cardData.Slider.Links && cardData.Slider.Links.trim()) {
+    const sliderData = JSON.parse(cardData.Slider.Links);
+    const swiper = createElement("div", "slider mt-4");
+    swiper.innerHTML = `<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+    </div>
+  </div>
+  <div class="content">
+    <p>
+      Princeton Univercity Art Museum 80,000+ ancient & contemporary
+      Works
+    </p>
+  </div>`;
+    // let swiperWrapper = document.querySelector(".card-section .swiper-wrapper");
 
+    cardContainer.appendChild(swiper);
+    const swiperArray = sliderData.map((value) => {
+      let swiperWrapper = document.querySelector(
+        ".card-section .swiper-wrapper"
+      );
+
+      const swiperSlide = createElement("div", "swiper-slide");
+      const sliderImg = createElement("img", "img-fluid", "", {
+        src: value.URL,
+      });
+      swiperSlide.append(sliderImg);
+
+      swiperWrapper.appendChild(swiperSlide);
+
+      return;
+    });
+    getSlider();
+  }
   if (
     cardData.Document.isActive == true &&
     cardData.Document.URL &&
     cardData.Document.URL.trim()
   ) {
-    const cardContainer = document.querySelector(".card-section .container");
     const canves = getDocument(cardData.Document.URL);
     console.log(cardData.Document);
     const Document = createElement("div", "documents mt-4");
@@ -235,8 +266,8 @@ function loadAllDetails() {
             </div>
             <div class="document">
               <div class="top-bar">
-                <button class="btn" id="prev-page"></button>
-                <button class="btn" id="next-page"></button>
+                <button class="btn" id="prev-page">❮</button>
+                <button class="btn" id="next-page">❯</button>
               </div>
             </div>`;
     cardContainer.appendChild(Document);

@@ -48,27 +48,27 @@ body {
 .w-100 {
   width: 100%;
 }
-#prev-page,
-#next-page {
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 50%;
-  background: transparent;
-  transform: rotate(-45deg);
-  border: 2px solid #ddd;
-}
-#prev-page {
-  border-right: transparent;
-  border-bottom: transparent;
-  left: 8px;
-}
-#next-page {
-  border-left: transparent;
-  border-top: transparent;
-  right: 8px;
-}
+// #prev-page,
+// #next-page {
+//   cursor: pointer;
+//   width: 20px;
+//   height: 20px;
+//   position: absolute;
+//   top: 50%;
+//   background: transparent;
+//   transform: rotate(-45deg);
+//   border: 2px solid #ddd;
+// }
+// #prev-page {
+//   border-right: transparent;
+//   border-bottom: transparent;
+//   left: 8px;
+// }
+// #next-page {
+//   border-left: transparent;
+//   border-top: transparent;
+//   right: 8px;
+// }
 .documents .document {
   position: relative;
 }

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <title>Banner</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
     <script src="./js/main.js" defer type="module"></script>
   </head>
   <body>
@@ -40,45 +44,27 @@
       <section class="card-section">
         <div class="container">
           <div class="cardItem"></div>
-          <div class="slider">
-            <!--image slider start-->
-            <div class="slider">
-              <div class="slides">
-                <!--radio buttons start-->
-                <input type="radio" name="radio-btn" id="radio1" />
-                <input type="radio" name="radio-btn" id="radio2" />
-                <input type="radio" name="radio-btn" id="radio3" />
-
-                <!--radio buttons end-->
-                <!--slide images start-->
-                <div class="slide first">
-                  <img src="./assets/image/img1.jpg" alt="" />
+          <!-- <div class="slider mt-4">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img class="img-fluid" src="./assets/image/img1.jpg" alt="" />
                 </div>
-                <div class="slide">
-                  <img src="./assets/image/img1.jpg" alt="" />
+                <div class="swiper-slide">
+                  <img class="img-fluid" src="./assets/image/img2.jpg" alt="" />
                 </div>
-                <div class="slide">
-                  <img src="./assets/image/img3.jpg" alt="" />
+                <div class="swiper-slide">
+                  <img class="img-fluid" src="./assets/image/img3.jpg" alt="" />
                 </div>
-                <!--slide images end-->
-                <!--automatic navigation start-->
-                <div class="navigation-auto">
-                  <div class="auto-btn1"></div>
-                  <div class="auto-btn2"></div>
-                  <div class="auto-btn3"></div>
-                </div>
-                <!--automatic navigation end-->
               </div>
-              <!--manual navigation start-->
-              <div class="navigation-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-              </div>
-              <!--manual navigation end-->
             </div>
-            <!--image slider end-->
-          </div>
+            <div class="content">
+              <p>
+                Princeton Univercity Art Museum 80,000+ ancient & contemporary
+                Works
+              </p>
+            </div>
+          </div> -->
         </div>
       </section>
       <footer class="footer text-center">
@@ -88,16 +74,8 @@
         </div>
       </footer>
     </div>
-    <script type="text/javascript">
-      var counter = 1;
-      setInterval(function () {
-        document.getElementById("radio" + counter).checked = true;
-        counter++;
-        if (counter > 4) {
-          counter = 1;
-        }
-      }, 5000);
-    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
   </body>
 </html>
