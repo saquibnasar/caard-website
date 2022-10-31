@@ -153,29 +153,30 @@ const showUserDetails = (type, vlaue, detailPlace, attribute) => {
 
 const createElement = (tagName, className, textContent, attribute) => {
   const element = document.createElement(tagName);
-  element.setAttribute("class", className);
-
+  if (className && className.trim()) {
+    element.setAttribute("class", className);
+  }
   if (textContent && textContent.trim()) {
     element.textContent = textContent;
   }
   if (attribute) {
     for (const key of Object.keys(attribute)) {
+      if (key && key.trim() && attribute[key] && attribute[key].trim()) {
+      }
       element.setAttribute(key, attribute[key]);
     }
   }
 
   return element;
 };
+const pathName = window.location.pathname.split("/");
+const value = pathName[pathName.length - 1];
 
+console.log(value);
 let data;
-const root = document.getElementById("root");
-const loader = document.getElementById("loader");
-
 async function getData() {
-  root.style.height = "100vh";
-  loader.classList.add("d-flex");
   let response = await fetch(
-    "https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib"
+    `https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/saquib556`
   );
 
   data = await response.json();
@@ -205,22 +206,22 @@ function loadAllDetails() {
     loader.classList.remove("d-flex");
     loader.classList.add("d-none");
   }
+
   if (cardData.Slider.Links && cardData.Slider.Links.trim()) {
     const sliderData = JSON.parse(cardData.Slider.Links);
+
     const swiper = createElement("div", "slider mt-4");
     swiper.innerHTML = `<div class="swiper mySwiper">
     <div class="swiper-wrapper">
     </div>
   </div>
-  <div class="content">
+  <div class="swiper-content">
     <p>
-      Princeton Univercity Art Museum 80,000+ ancient & contemporary
-      Works
+   ${sliderData[0].Title}
     </p>
   </div>`;
-    // let swiperWrapper = document.querySelector(".card-section .swiper-wrapper");
-
     cardContainer.appendChild(swiper);
+
     const swiperArray = sliderData.map((value) => {
       let swiperWrapper = document.querySelector(
         ".card-section .swiper-wrapper"
@@ -230,6 +231,7 @@ function loadAllDetails() {
       const sliderImg = createElement("img", "img-fluid", "", {
         src: value.URL,
       });
+
       swiperSlide.append(sliderImg);
 
       swiperWrapper.appendChild(swiperSlide);
@@ -244,7 +246,6 @@ function loadAllDetails() {
     cardData.Document.URL.trim()
   ) {
     const canves = getDocument(cardData.Document.URL);
-    console.log(cardData.Document);
     const Document = createElement("div", "documents mt-4");
     Document.innerHTML = `
     <div class="card mt-0 round-bottom-0">
@@ -289,6 +290,8 @@ function loadAllDetails() {
           checkFlag();
         }, 100); /* this checks the flag every 100 milliseconds*/
       } else {
+        const root = document.getElementById("root");
+        const loader = document.getElementById("loader");
         root.style.height = "100%";
         loader.classList.remove("d-flex");
         loader.classList.add("d-none");

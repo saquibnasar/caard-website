@@ -19,6 +19,7 @@ body {
   margin: 0 auto;
   background: #efefef;
   overflow: hidden;
+  height: 100vh;
 }
 .d-none {
   display: none !important;
@@ -175,6 +176,7 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
   .loading {
     width: 20px;
     height: 20px;
